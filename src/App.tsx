@@ -16,9 +16,17 @@ function App() {
     } )
   };
 
+  function removeTodoHandler(id : number) : void {
+
+    setTodos((prevState) => {
+      return prevState.filter( todo => todo.id !== id );
+    })
+
+  };
+
   return (
     <div className="App">
-      <Todos todos={todos}/>
+      <Todos todos={todos} onRemoveTodo={removeTodoHandler}/>
       <TodoForm onAddTodo={onAddTodo}/>
     </div>
   );
