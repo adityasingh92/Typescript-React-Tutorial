@@ -1,11 +1,21 @@
 import React, { useRef } from "react";
 
-function TodoForm() : JSX.Element {
+function TodoForm(props : {
+    onAddTodo : (text:string) => void;
+}) : JSX.Element {
 
     const todoInputRef = useRef<HTMLInputElement>(null);
 
     function formSubmitHandler(event : React.FormEvent  ){
         event.preventDefault();
+
+        const enteredText = todoInputRef.current!.value;
+
+        if(enteredText.trim().length === 0){
+            return;
+        }
+
+        props.onAddTodo(enteredText);
     }
 
     return (
